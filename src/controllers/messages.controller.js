@@ -1,3 +1,5 @@
+import {normalizer} from '../utils/normalizer.js'
+
 import { PERSISTENCE_TYPE } from '../config.js';
 import path from 'path';
 const __dirname = path.resolve();
@@ -44,9 +46,11 @@ export const index = async (req, res) => {
 export const getAllMessages = async (req, res) => {
     try {
         const messages = await messageDAO.getAll();
+        const normalized = normalizer({id:'messages', messages })
+
         res.json({
             count: messages.length,
-            messages,
+            messages: normalized
         });
     } catch (error) {
         console.log(error);
@@ -55,8 +59,11 @@ export const getAllMessages = async (req, res) => {
 
 export const addMessage = async (req, res) => {
     try {
+        const messages = await messageDAO.add(req.body)
+        const normalized = normalizer({id:'messages', messages })
         res.json({
-            message: await messageDAO.add(req.body)
+            count:1,
+            messages: normalized
         });
     } catch (error) {
         console.log(error);

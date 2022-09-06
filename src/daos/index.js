@@ -1,4 +1,4 @@
-import Product from '../database/models/products.model.js';
+import Message from '../database/models/messages.model.js';
 
 import MessageMemoryDAO from './messages/MessageMemoryDAO.js';
 
@@ -15,4 +15,4 @@ export const messageFileDAO = new MessageFileDAO(
 );
 
 //MONGO DB DAO'S
-export const messageMongoDBDAO = new MessageMongoDBDAO(Product);
+export const messageMongoDBDAO = new MessageMongoDBDAO(Message);

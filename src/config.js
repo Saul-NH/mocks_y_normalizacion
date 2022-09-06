@@ -5,7 +5,7 @@ export const PERSISTENCE_TYPE = 'MEMORY';
 // export const PERSISTENCE_TYPE = 'MONGO';
 
 export const MONGO_DB = {
-    URL: 'mongodb://localhost/coderhouse',
+    URL: 'mongodb+srv://tester:<password>@cluster0.owruzid.mongodb.net/?retryWrites=true&w=majority',
     config: {
         useNewUrlParser: true,
         useUnifiedTopology: true,

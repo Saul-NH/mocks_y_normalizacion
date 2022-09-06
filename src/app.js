@@ -38,9 +38,8 @@ io.on('connection', socket => {
             data: message
         })
         .then((response) => {
-            console.log('save',response.data.message);
             if (response.status === 200) {
-                io.sockets.emit('refreshChat', [response.data.message]);
+                io.sockets.emit('refreshChat', response.data);
             } else {
                 console.log('Fail');
             }

@@ -5,29 +5,13 @@ export default class ProductMongoDBDAO extends MongoDBContainer {
         super(model);
     }
 
-    async add(product) {
+    async add(message) {
         try {
-            await this.Model.create(product);
+            message.date = new Date().toLocaleTimeString();
+            await this.Model.create(message);
+            return await this.Model.find().lean();
         } catch (error) {
             console.error(error);
-        }
-    }
-
-    async updateById(id, product) {
-        try {
-            const resourceUpdated = await this.Model.findByIdAndUpdate(
-                id,
-                product
-            );
-            if (!resourceUpdated) {
-                return 'Product not found';
-            }
-
-            return `Product with ID: ${id} Updated`;
-        } catch (error) {
-            if (error.kind == 'ObjectId') {
-                return 'Invalid id';
-            }
         }
     }
 }
